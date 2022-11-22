@@ -24,7 +24,8 @@ router.put('/:user_id', async (req, res) => {
     const result = await User.update(req.body, {
       where: {
         id: req.params.user_id
-      }
+      },
+      individualHooks: true, // VERY IMPORTANT - HOOK WILL NOT RUN IF MISSING
     })
     res.json(result)
   } catch (err) {

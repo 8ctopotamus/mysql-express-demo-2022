@@ -1,9 +1,4 @@
 // Password Hashing
-
-// "salt" rounds
-
-// "supersecretpass" => "8fu34982hrjouhq3e908dyn9c8ay98dyhudan9p8y"
-
 const bcrypt = require('bcrypt')
 
 const plainTextPassword = "supersecrepass"
