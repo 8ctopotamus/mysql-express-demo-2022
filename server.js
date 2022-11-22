@@ -1,6 +1,33 @@
 require('dotenv').config()
-
+const express = require('express')
 const sequelize = require('./config/connection')
+
+const app = express()
+const PORT = process.env.PORT || 3001
+const isProduction = process.env.NODE_ENV === "production"
+
+app.use(express.json())
+
+
+
+app.listen(PORT, () => {
+  console.log(`API server listening on http://localhost:${PORT}`)
+  sequelize.sync({ force: !isProduction }).then(() => {
+    console.log('Sequelize connected!')
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 // const Movie = require('./models/movies.js')
 
 // sequelize.sync({ force: true }).then(async () => {
