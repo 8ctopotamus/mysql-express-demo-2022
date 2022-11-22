@@ -21,7 +21,12 @@ router.post('/', async (req, res) => {
 
 router.put('/:movie_id', async (req, res) => {
   try {
-
+    const result = await Movie.update(req.body, {
+      where: {
+        id: req.params.movie_id
+      }
+    })
+    res.json(result)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -29,48 +34,15 @@ router.put('/:movie_id', async (req, res) => {
 
 router.delete('/:movie_id', async (req, res) => {
   try {
-
+    const result = await Movie.destroy({
+      where: {
+        id: req.params.movie_id
+      }
+    })
+    res.json(result)
   } catch (err) {
     res.status(500).json(err)
   }
 })
-
-
-//   // CREATE
-//   await Movie.create({ name: "Fido" })
-
-//   await Movie.bulkCreate([
-//     { name: "Inception" },
-//     { name: "Shawshank" },
-//     { name: "Forrest Gump" },
-//     { name: "Fight Club" },
-//     { name: "Ace Ventura: Pet Detective" },
-//     { name: "The Matrix" }
-//   ])
-
-
-//   // UPDATE
-//   await Movie.update({ name: "Star Wars" }, {
-//     where: {
-//       name: "Inception"
-//     }
-//   })
-
-//   await Movie.update({ name: "Six String Samurai"}, {
-//     where: {
-//       id: 3
-//     }
-//   })
-
-//   // DELETE
-//   await Movie.destroy({
-//     where: {
-//       id: 1
-//     }
-//   })
-
-//   const allMovies = await Movie.findAll()
-//   console.log(allMovies)
-
 
 module.exports = router
