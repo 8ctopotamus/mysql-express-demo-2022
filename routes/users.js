@@ -10,6 +10,30 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body
+
+  // does the user exist?
+  const user = await User.findOne({
+    where: {
+      username
+    }
+  })
+
+  if (!user) {
+    return res.status(401).json({ error: "User doesn't exist" })
+  }
+
+  // check incoming password against hashed password
+  const isCorrectPW = await user.checkPassword(password)
+  
+  if (!isCorrectPW) {
+    return res.status(401).json({ error: 'Incorrect password' })
+  }
+
+  res.json(user)
+})
+
 router.post('/', async (req, res) => {
   try {
     const result = await User.create(req.body)
