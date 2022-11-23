@@ -1,9 +1,19 @@
 const router = require('express').Router()
-const Movie = require('../models/movies.js')
+const { Movie, Review } = require('../models')
 
 router.get('/', async (req, res) => {
   try {
-    const allMovies = await Movie.findAll()
+    const allMovies = await Movie.findAll({
+      include: [{model: Review}],
+      attributes: {
+        include: [
+          [
+            '(SELECT COUNT(*) FROM reviews WHERE movie.id = reviews.movie_id)',
+            'reviewCount'
+          ]
+        ]
+      }
+    })
     res.json(allMovies)
   } catch (err) {
     res.status(500).json(err)
