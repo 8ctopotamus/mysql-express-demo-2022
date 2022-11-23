@@ -1,10 +1,6 @@
 const router = require('express').Router()
-const movieRoutes = require('./movies')
-const reviewRoutes = require('./reviews')
-const userRoutes = require('./users')
+// TODO: import all route modules here
 
-router.use('/api/movies', movieRoutes)
-router.use('/api/reviews', reviewRoutes)
-router.use('/api/users', userRoutes)
+// TODO: add each route module as a middleware, prefixed with a path
 
 module.exports = router

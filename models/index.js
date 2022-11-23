@@ -1,16 +1,5 @@
-const Movie = require('./movies')
-const Review = require('./reviews')
+// TODO: require in all models here
 
-Movie.hasMany(Review, {
-  foreignKey: 'movie_id',
-  onDelete: 'CASCADE'
-})
+// TODO: set up model associations here
 
-Review.belongsTo(Movie, {
-  foreignKey: 'movie_id',
-})
-
-module.exports = {
-  Movie,
-  Review,
-}
+// TODO: export all models in an object
