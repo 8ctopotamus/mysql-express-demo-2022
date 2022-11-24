@@ -10,6 +10,13 @@ Review.init({
     validate: {
       len: [10, 1000]
     }
+  }, 
+  movie_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'movies',
+      key: 'id'
+    }
   }
 }, { sequelize })
 

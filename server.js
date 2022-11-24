@@ -12,7 +12,7 @@ app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`API server listening on http://localhost:${PORT}`)
-  sequelize.sync({ force: !isProduction }).then(() => {
+  sequelize.sync({ force: false }).then(() => {
     console.log('Sequelize connected!')
   })
 })
